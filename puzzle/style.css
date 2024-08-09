@@ -1,0 +1,61 @@
+body {
+      margin: 0;
+      padding:0;
+      border: none;
+    }
+    #forPuzzle {
+      border:none;
+      left:0px;
+      top:0px;
+    }
+    #divmenu {
+      position:absolute;
+      top:5px;
+      left:5px;
+      width:0px;
+      height:0px;
+      cursor:default;
+      z-index:50001;
+      border-radius:5px;
+    }
+    #divmenu.open {
+      width:120px;
+      height:100px;
+      background-color:rgba(20,20,20,0.7);
+      z-index:50001;
+    }
+
+    #divmenu .title {
+    	font-family: Verdana, "Bitstream Vera Sans", "Lucida Sans", sans-serif;
+      font-weight:bold;
+      font-size:15px;
+      position:absolute;
+      top:0px;
+      left:5px;
+      color:white;
+      background-color:rgba(20,20,20,0.7);
+      padding:5px;
+      border-radius:5px;
+    }
+
+    #divmenu .line {
+    	font-family: Verdana, "Bitstream Vera Sans", "Lucida Sans", sans-serif;
+      font-weight:bold;
+      font-size:15px;
+      text-align:left;
+      position:absolute;
+      width:100px;
+      left:5px;
+      color:white;
+      padding:5px;
+      display:none;
+      border-radius:5px;
+    }
+
+    #divmenu.open .line {
+      display:block;
+    }
+    #divmenu.open .line:hover {
+      background-color: rgba(20,20,20,1);
+      cursor:pointer;
+    }
