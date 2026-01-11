@@ -775,6 +775,19 @@ on number of pieces
       lineStep: 30,
       lines: lines,
     });
+
+    // Create audio hint
+    this.audioHint = document.createElement("div");
+    this.audioHint.id = "audioHint";
+    this.audioHint.textContent = "move pieces to play audio";
+    this.divGame.appendChild(this.audioHint);
+
+    // Create site logo link
+    let siteLogo = document.createElement("a");
+    siteLogo.id = "siteLogo";
+    siteLogo.href = "https://madzia.zalewa.info/";
+    siteLogo.textContent = "madzia zalewa";
+    this.divGame.appendChild(siteLogo);
   }
   if (autoStart) {
     this.npieces = npieces;
@@ -835,6 +848,18 @@ Puzzle.prototype.changeImage = function (imgSrc, audioSrc) {
 
 Puzzle.prototype.setAudio = function (audioSrc) {
   this.audio = new Audio(audioSrc);
+  this.audio.preload = "auto";
+  this.audioReady = false;
+  this.audioPendingPlay = false;
+
+  const puz = this;
+  this.audio.addEventListener("canplay", function () {
+    puz.audioReady = true;
+    if (puz.audioPendingPlay) {
+      puz.audioPendingPlay = false;
+      puz.audio.play();
+    }
+  });
 };
 
 // -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -   -
@@ -842,6 +867,10 @@ Puzzle.prototype.setAudio = function (audioSrc) {
 Puzzle.prototype.pauseAudio = function () {
   if (this.audio) {
     this.audio.pause();
+    this.audioPendingPlay = false;
+  }
+  if (this.audioHint) {
+    this.audioHint.style.display = "block";
   }
 };
 // -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -   -
@@ -849,11 +878,18 @@ Puzzle.prototype.pauseAudio = function () {
 Puzzle.prototype.playAudio = function () {
   let puz = this;
   if (this.audio) {
-    this.audio.play();
+    if (this.audioReady) {
+      this.audio.play();
+    } else {
+      this.audioPendingPlay = true;
+    }
     clearTimeout(this.playTimeout);
     this.playTimeout = setTimeout(() => {
       puz.pauseAudio();
     }, pauseAudioAfter);
+  }
+  if (this.audioHint) {
+    this.audioHint.style.display = "none";
   }
 };
 
