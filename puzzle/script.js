@@ -848,7 +848,7 @@ Puzzle.prototype.changeImage = function (imgSrc, audioSrc) {
 
 Puzzle.prototype.setAudio = function (audioSrc) {
   this.audio = new Audio(audioSrc);
-  this.audio.preload = "auto";
+  this.audio.preload = "none";
   this.audioReady = false;
   this.audioPendingPlay = false;
 
@@ -882,6 +882,7 @@ Puzzle.prototype.playAudio = function () {
       this.audio.play();
     } else {
       this.audioPendingPlay = true;
+      this.audio.load();
     }
     clearTimeout(this.playTimeout);
     this.playTimeout = setTimeout(() => {
