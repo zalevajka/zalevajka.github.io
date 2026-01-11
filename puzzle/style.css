@@ -71,3 +71,21 @@ body {
       z-index: 50001;
       white-space: nowrap;
     }
+
+    #siteLogo {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: lowercase;
+      text-decoration: none;
+      color: black;
+      z-index: 50001;
+    }
+
+    #siteLogo:hover {
+      opacity: 0.7;
+    }

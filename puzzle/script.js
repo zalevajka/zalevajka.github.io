@@ -781,6 +781,13 @@ on number of pieces
     this.audioHint.id = "audioHint";
     this.audioHint.textContent = "move pieces to play audio";
     this.divGame.appendChild(this.audioHint);
+
+    // Create site logo link
+    let siteLogo = document.createElement("a");
+    siteLogo.id = "siteLogo";
+    siteLogo.href = "https://madzia.zalewa.info/";
+    siteLogo.textContent = "madzia zalewa";
+    this.divGame.appendChild(siteLogo);
   }
   if (autoStart) {
     this.npieces = npieces;
