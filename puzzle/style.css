@@ -59,3 +59,15 @@ body {
       background-color: rgba(20,20,20,1);
       cursor:pointer;
     }
+
+    #audioHint {
+      position: absolute;
+      top: 5px;
+      left: 80px;
+      font-family: Verdana, "Bitstream Vera Sans", "Lucida Sans", sans-serif;
+      font-size: 15px;
+      color: #888;
+      padding: 5px;
+      z-index: 50001;
+      white-space: nowrap;
+    }

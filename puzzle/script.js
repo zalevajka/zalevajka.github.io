@@ -775,6 +775,12 @@ on number of pieces
       lineStep: 30,
       lines: lines,
     });
+
+    // Create audio hint
+    this.audioHint = document.createElement("div");
+    this.audioHint.id = "audioHint";
+    this.audioHint.textContent = "move pieces to play audio";
+    this.divGame.appendChild(this.audioHint);
   }
   if (autoStart) {
     this.npieces = npieces;
@@ -856,6 +862,9 @@ Puzzle.prototype.pauseAudio = function () {
     this.audio.pause();
     this.audioPendingPlay = false;
   }
+  if (this.audioHint) {
+    this.audioHint.style.display = "block";
+  }
 };
 // -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -   -
 
@@ -871,6 +880,9 @@ Puzzle.prototype.playAudio = function () {
     this.playTimeout = setTimeout(() => {
       puz.pauseAudio();
     }, pauseAudioAfter);
+  }
+  if (this.audioHint) {
+    this.audioHint.style.display = "none";
   }
 };
 
