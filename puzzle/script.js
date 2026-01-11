@@ -835,6 +835,18 @@ Puzzle.prototype.changeImage = function (imgSrc, audioSrc) {
 
 Puzzle.prototype.setAudio = function (audioSrc) {
   this.audio = new Audio(audioSrc);
+  this.audio.preload = "auto";
+  this.audioReady = false;
+  this.audioPendingPlay = false;
+
+  const puz = this;
+  this.audio.addEventListener("canplay", function () {
+    puz.audioReady = true;
+    if (puz.audioPendingPlay) {
+      puz.audioPendingPlay = false;
+      puz.audio.play();
+    }
+  });
 };
 
 // -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -   -
@@ -842,6 +854,7 @@ Puzzle.prototype.setAudio = function (audioSrc) {
 Puzzle.prototype.pauseAudio = function () {
   if (this.audio) {
     this.audio.pause();
+    this.audioPendingPlay = false;
   }
 };
 // -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -   -
@@ -849,7 +862,11 @@ Puzzle.prototype.pauseAudio = function () {
 Puzzle.prototype.playAudio = function () {
   let puz = this;
   if (this.audio) {
-    this.audio.play();
+    if (this.audioReady) {
+      this.audio.play();
+    } else {
+      this.audioPendingPlay = true;
+    }
     clearTimeout(this.playTimeout);
     this.playTimeout = setTimeout(() => {
       puz.pauseAudio();
