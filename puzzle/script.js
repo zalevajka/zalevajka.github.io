@@ -2,10 +2,10 @@
 const npieces = 100; // number of pieces
 const pauseAudioAfter = 10000; // 10 seconds
 const imgAudioList = [
-  { text: "puzzle A", img: "./img/img1.PNG", audio: "./audio/2.mp3" },
-  { text: "puzzle B", img: "./img/img2.PNG", audio: "./audio/1.mp3" },
-  { text: "puzzle C", img: "./img/img3.PNG", audio: "./audio/3.mp3" },
-  { text: "puzzle D", img: "./img/img4.PNG", audio: "./audio/4.mp3" },
+  { text: "puzzle A", img: "./img/img1.jpg", audio: "./audio/2.mp3" },
+  { text: "puzzle B", img: "./img/img2.jpg", audio: "./audio/1.mp3" },
+  { text: "puzzle C", img: "./img/img3.jpg", audio: "./audio/3.mp3" },
+  { text: "puzzle D", img: "./img/img4.jpg", audio: "./audio/4.mp3" },
 ];
 let autoStart;
 const mrandom = Math.random,
